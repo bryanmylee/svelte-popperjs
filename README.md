@@ -1,5 +1,5 @@
 # svelte-popperjs
-Popper for Svelte with actions, no wrapper components required!
+Popper for Svelte with actions, no wrapper components or component bindings required!
 
 ## Installation
 
@@ -15,15 +15,40 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
 
-```html
+## Examples
+
+A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutorial/).
+
+```svelte
 <script>
   import { createPopperActions } from 'svelte-popperjs';
   const [ refAction, popperAction ] = createPopperActions();
+  
+  let showTooltip = false;
+  const popperOptions = {
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 8],
+        },
+      },
+    ],
+  };
 </script>
 
-<button use:refAction>My button</button>
-<div use:popperAction={{ placement: 'right' }}>
-  My tooltip
-  <div id="arrow" data-popper-arrow />
-</div>
+<button
+  use:refAction
+  on:mouseenter={_ => showTooltip = true}
+  on:mouseleave={_ => showTooltip = false}
+>
+  My button
+</button>
+
+{#if showTooltip}
+  <div id="tooltip" use:popperAction={popperOptions}>
+    My tooltip
+    <div id="arrow" data-popper-arrow />
+  </div>
+{/if}
 ```
