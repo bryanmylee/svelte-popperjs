@@ -1,11 +1,11 @@
 import { createPopper, Instance, OptionsGeneric, Modifier } from '@popperjs/core';
 
 type PopperOptions = Partial<OptionsGeneric<Partial<Modifier<any, any>>>>;
-type ReferenceAction = (node: HTMLElement, popperOptions: PopperOptions) => {
-  update(popperOptions: PopperOptions): void;
+type ReferenceAction = (node: HTMLElement) => {
   destroy(): void;
 };
-type ContentAction = (node: HTMLElement) => {
+type ContentAction = (node: HTMLElement, popperOptions: PopperOptions) => {
+  update(popperOptions: PopperOptions): void;
   destroy(): void;
 };
 
@@ -15,26 +15,26 @@ export function createPopperActions() {
   let contentNode: HTMLElement;
   let options: PopperOptions | undefined;
 
-  function referenceAction(node: HTMLElement, popperOptions?: PopperOptions) {
+  function referenceAction(node: HTMLElement) {
     referenceNode = node;
-    options = popperOptions;
     return {
-      update(popperOptions: PopperOptions) {
-        options = popperOptions;
-        popperInstance.setOptions(options);
-      },
       destroy() {
-        popperInstance.destroy();
+        if (popperInstance) popperInstance.destroy();
       }
     }
   }
 
-  function contentAction(node: HTMLElement) {
+  function contentAction(node: HTMLElement, popperOptions?: PopperOptions) {
     contentNode = node;
+    options = popperOptions;
     popperInstance = createPopper(referenceNode, contentNode, options);
     return {
+      update(popperOptions: PopperOptions) {
+        options = popperOptions;
+        if (popperInstance) popperInstance.setOptions(options);
+      },
       destroy() {
-        popperInstance.destroy();
+        if (popperInstance) popperInstance.destroy();
       }
     }
   }
