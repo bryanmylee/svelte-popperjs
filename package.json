@@ -1,0 +1,31 @@
+{
+  "name": "svelte-popperjs",
+  "version": "1.0.0",
+  "description": "Popper for Svelte with actions, no wrapper components required!",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bryanmylee/svelte-popperjs.git"
+  },
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "popper",
+    "popperjs",
+    "tooltip",
+    "positioning"
+  ],
+  "author": "Bryan Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryanmylee/svelte-popperjs/issues"
+  },
+  "homepage": "https://github.com/bryanmylee/svelte-popperjs#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.4.4"
+  }
+}
