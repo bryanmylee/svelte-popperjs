@@ -13,7 +13,7 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 `createPopperActions` returns a pair of actions to be used on the [reference and popper element](https://popper.js.org/docs/v2/constructors/#usage).
 
-The reference action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
+The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
 
 ```html
 <script>
@@ -21,8 +21,8 @@ The reference action takes an [options object](https://popper.js.org/docs/v2/con
   const [ refAction, popperAction ] = createPopperActions();
 </script>
 
-<button use:refAction={{ placement: 'right' }}>My button</button>
-<div use:popperAction>
+<button use:refAction>My button</button>
+<div use:popperAction={{ placement: 'right' }}>
   My tooltip
   <div id="arrow" data-popper-arrow />
 </div>
