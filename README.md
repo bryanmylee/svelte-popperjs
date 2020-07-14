@@ -34,8 +34,8 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 
 <button
   use:popperRef
-	on:mouseenter={_ => showTooltip = true}
-	on:mouseleave={_ => showTooltip = false}
+  on:mouseenter={_ => showTooltip = true}
+  on:mouseleave={_ => showTooltip = false}
 >
   My button
 </button>
