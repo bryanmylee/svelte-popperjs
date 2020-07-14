@@ -1,6 +1,6 @@
 {
   "name": "svelte-popperjs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Popper for Svelte with actions, no wrapper components required!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

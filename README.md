@@ -22,31 +22,25 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 ```svelte
 <script>
   import { createPopperActions } from 'svelte-popperjs';
-  const [ refAction, popperAction ] = createPopperActions();
-  
-  let showTooltip = false;
+  const [ popperRef, popperContent ] = createPopperActions();
   const popperOptions = {
     modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 8],
-        },
-      },
+      { name: 'offset', options: { offset: [0, 8] } }
     ],
   };
+
+  let showTooltip = false;
 </script>
 
 <button
-  use:refAction
-  on:mouseenter={_ => showTooltip = true}
-  on:mouseleave={_ => showTooltip = false}
+  use:popperRef
+	on:mouseenter={_ => showTooltip = true}
+	on:mouseleave={_ => showTooltip = false}
 >
   My button
 </button>
-
 {#if showTooltip}
-  <div id="tooltip" use:popperAction={popperOptions}>
+  <div id="tooltip" use:popperContent={popperOptions}>
     My tooltip
     <div id="arrow" data-popper-arrow />
   </div>
