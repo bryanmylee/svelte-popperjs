@@ -10,7 +10,7 @@ type ContentAction = (node: HTMLElement, popperOptions: PopperOptions) => {
 };
 
 export function createPopperActions() {
-  let popperInstance: Instance;
+  let popperInstance: Instance | null;
   let referenceNode: HTMLElement;
   let contentNode: HTMLElement;
   let options: PopperOptions | undefined;
@@ -19,7 +19,10 @@ export function createPopperActions() {
     referenceNode = node;
     return {
       destroy() {
-        if (popperInstance) popperInstance.destroy();
+        if (popperInstance) {
+          popperInstance.destroy();
+          popperInstance = null;
+        }
       }
     }
   }
@@ -34,7 +37,10 @@ export function createPopperActions() {
         if (popperInstance) popperInstance.setOptions(options);
       },
       destroy() {
-        if (popperInstance) popperInstance.destroy();
+        if (popperInstance) {
+          popperInstance.destroy();
+          popperInstance = null;
+        }
       }
     }
   }
