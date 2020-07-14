@@ -47,3 +47,5 @@ export function createPopperActions() {
 
   return [ referenceAction, contentAction ] as [ ReferenceAction, ContentAction ];
 }
+
+export default { createPopperActions };
