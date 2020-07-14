@@ -11,7 +11,7 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 ## Usage
 
-`createPopperActions` returns a pair of actions to be used on the [reference and popper element](https://popper.js.org/docs/v2/constructors/#usage).
+`createPopperActions` returns a pair of actions to be used on the [reference and popper elements](https://popper.js.org/docs/v2/constructors/#usage).
 
 The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
 
