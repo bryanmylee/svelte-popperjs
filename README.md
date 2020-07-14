@@ -1,4 +1,7 @@
 # svelte-popperjs
+[![npm version](http://img.shields.io/npm/v/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
+[![npm downloads](https://img.shields.io/npm/dm/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
+
 Popper for Svelte with actions, no wrapper components or component bindings required!
 
 Other Popper libraries for Svelte (including the official `@popperjs/svelte` library) use a wrapper component that takes the required DOM elements as props. Not only does this require multiple `bind:this`, you also have to pollute your `script` tag with multiple DOM references.
