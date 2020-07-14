@@ -1,6 +1,10 @@
 # svelte-popperjs
 Popper for Svelte with actions, no wrapper components or component bindings required!
 
+Other Popper libraries for Svelte (including the official `@popperjs/svelte` library) use a wrapper component that takes the required DOM elements as props. Not only does this require multiple `bind:this`, you also have to pollute your `script` tag with multiple DOM references.
+
+We can do better with Svelte [actions](https://svelte.dev/tutorial/actions)!
+
 ## Installation
 
 ```bash
@@ -15,9 +19,11 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
 
-## Examples
+### Examples
 
 A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutorial/).
+
+*styles not included\**
 
 ```svelte
 <script>
