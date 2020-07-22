@@ -21,15 +21,19 @@ export function createPopperActions() {
     }
   }
 
+  function deinitPopper() {
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = null;
+    }
+  }
+
   function referenceAction(node: HTMLElement) {
     referenceNode = node;
     initPopper();
     return {
       destroy() {
-        if (popperInstance) {
-          popperInstance.destroy();
-          popperInstance = null;
-        }
+        deinitPopper();
       }
     }
   }
@@ -44,10 +48,7 @@ export function createPopperActions() {
         if (popperInstance) popperInstance.setOptions(options);
       },
       destroy() {
-        if (popperInstance) {
-          popperInstance.destroy();
-          popperInstance = null;
-        }
+        deinitPopper();
       }
     }
   }
