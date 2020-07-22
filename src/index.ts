@@ -15,8 +15,15 @@ export function createPopperActions() {
   let contentNode: HTMLElement;
   let options: PopperOptions | undefined;
 
+  function initPopper() {
+    if (referenceNode && contentNode) {
+      popperInstance = createPopper(referenceNode, contentNode, options);
+    }
+  }
+
   function referenceAction(node: HTMLElement) {
     referenceNode = node;
+    initPopper();
     return {
       destroy() {
         if (popperInstance) {
@@ -30,7 +37,7 @@ export function createPopperActions() {
   function contentAction(node: HTMLElement, popperOptions?: PopperOptions) {
     contentNode = node;
     options = popperOptions;
-    popperInstance = createPopper(referenceNode, contentNode, options);
+    initPopper();
     return {
       update(popperOptions: PopperOptions) {
         options = popperOptions;
