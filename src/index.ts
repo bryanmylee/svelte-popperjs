@@ -1,5 +1,6 @@
 import { createPopper, Instance, OptionsGeneric, Modifier } from '@popperjs/core';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type PopperOptions = Partial<OptionsGeneric<Partial<Modifier<any, any>>>>;
 type ReferenceAction = (node: HTMLElement) => {
   destroy(): void;
@@ -9,7 +10,7 @@ type ContentAction = (node: HTMLElement, popperOptions: PopperOptions) => {
   destroy(): void;
 };
 
-export function createPopperActions() {
+export function createPopperActions(): [ReferenceAction, ContentAction] {
   let popperInstance: Instance | null;
   let referenceNode: HTMLElement;
   let contentNode: HTMLElement;
@@ -35,7 +36,7 @@ export function createPopperActions() {
       destroy() {
         deinitPopper();
       }
-    }
+    };
   }
 
   function contentAction(node: HTMLElement, popperOptions?: PopperOptions) {
@@ -50,10 +51,10 @@ export function createPopperActions() {
       destroy() {
         deinitPopper();
       }
-    }
+    };
   }
 
-  return [ referenceAction, contentAction ] as [ ReferenceAction, ContentAction ];
+  return [ referenceAction, contentAction ];
 }
 
 export default { createPopperActions };
