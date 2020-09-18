@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
     "declaration": true,
-    "outDir": "dist",
+    "declarationDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true

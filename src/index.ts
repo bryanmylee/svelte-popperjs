@@ -56,5 +56,3 @@ export function createPopperActions(): [ReferenceAction, ContentAction] {
 
   return [ referenceAction, contentAction ];
 }
-
-export default { createPopperActions };
