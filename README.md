@@ -24,7 +24,7 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
 
-### Examples
+### Example
 
 A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutorial/).
 
@@ -56,4 +56,21 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
     <div id="arrow" data-popper-arrow />
   </div>
 {/if}
+```
+
+### Popper Instance
+
+If access is needed to the raw [Popper instance](https://popper.js.org/docs/v2/constructors/#instance) created by the actions, you can reference the third element returned by `createPopperActions`. The third element is a function that will return the current Popper instance used by the actions.
+
+Using the raw Popper instance to [manually recompute the popper's position](https://popper.js.org/docs/v2/lifecycle/#manual-update).
+
+```svelte
+<script>
+  import { createPopperActions } from 'svelte-popperjs';
+  const [popperRef, popperContent, getInstance] = createPopperActions();
+  
+  async function refreshTooltip() {
+    const newState = await getInstance().update();
+  }
+</script>
 ```
