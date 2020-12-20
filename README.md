@@ -4,7 +4,7 @@
 [![npm version](http://img.shields.io/npm/v/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 [![npm downloads](https://img.shields.io/npm/dm/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 ![license](https://img.shields.io/npm/l/svelte-popperjs)
-![build](https://img.shields.io/github/workflow/status/bryanmylee/svelte-popperjs/svelte-popperjs)
+![build](https://img.shields.io/github/workflow/status/bryanmylee/svelte-popperjs/publish)
 ![size](https://img.shields.io/bundlephobia/min/svelte-popperjs)
 
 Popper for Svelte with actions, no wrapper components or component bindings required!
