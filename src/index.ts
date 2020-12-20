@@ -39,14 +39,16 @@ export function createPopperActions(): [ReferenceAction, ContentAction] {
     };
   }
 
-  function contentAction(node: HTMLElement, popperOptions?: PopperOptions) {
+  function contentAction(node: HTMLElement, initOptions?: PopperOptions) {
     contentNode = node;
-    options = popperOptions;
+    options = initOptions;
     initPopper();
     return {
-      update(popperOptions: PopperOptions) {
-        options = popperOptions;
-        if (popperInstance) popperInstance.setOptions(options);
+      update(newOptions: PopperOptions) {
+        options = newOptions;
+        if (popperInstance) {
+          popperInstance.setOptions(options);
+        }
       },
       destroy() {
         deinitPopper();
@@ -54,5 +56,6 @@ export function createPopperActions(): [ReferenceAction, ContentAction] {
     };
   }
 
-  return [ referenceAction, contentAction ];
+  return [referenceAction, contentAction];
 }
+
