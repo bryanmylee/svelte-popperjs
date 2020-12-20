@@ -1,4 +1,4 @@
-![svelte-popperjs](https://user-images.githubusercontent.com/42545742/102705501-a3da9800-42c3-11eb-937d-d0ba1c6021be.png)
+![svelte-popperjs](https://user-images.githubusercontent.com/42545742/102705803-6297b780-42c6-11eb-9540-9641c764d2d3.png)
 
 # svelte-popperjs
 [![npm version](http://img.shields.io/npm/v/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
