@@ -31,8 +31,6 @@ The content action takes an [options object](https://popper.js.org/docs/v2/const
 
 A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutorial/).
 
-*styles not included\**
-
 ```svelte
 <script>
   import { createPopperActions } from 'svelte-popperjs';
@@ -61,7 +59,9 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 {/if}
 ```
 
-### Popper Instance
+## API
+
+### Accessing the Popper instance
 
 If access is needed to the raw [Popper instance](https://popper.js.org/docs/v2/constructors/#instance) created by the actions, you can reference the third element returned by `createPopperActions`. The third element is a function that will return the current Popper instance used by the actions.
 
