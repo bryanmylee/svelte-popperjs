@@ -33,7 +33,7 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 ```svelte
 <script>
   import { createPopperActions } from 'svelte-popperjs';
-  const [ popperRef, popperContent ] = createPopperActions();
+  const [popperRef, popperContent] = createPopperActions();
   const popperOptions = {
     modifiers: [
       { name: 'offset', options: { offset: [0, 8] } }
@@ -45,8 +45,8 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 
 <button
   use:popperRef
-  on:mouseenter={_ => showTooltip = true}
-  on:mouseleave={_ => showTooltip = false}
+  on:mouseenter={() => showTooltip = true}
+  on:mouseleave={() => showTooltip = false}
 >
   My button
 </button>
