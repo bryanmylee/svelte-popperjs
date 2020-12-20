@@ -5,7 +5,7 @@ import tsconfig from './tsconfig.json';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { declaration, declarationDir, ...compilerOptions } = tsconfig.compilerOptions;
 
-export default{
+export default {
   input: 'src/index.ts',
   output: [
     { format: 'cjs', file: pkg.main },
@@ -19,3 +19,4 @@ export default{
     })
   ]
 };
+

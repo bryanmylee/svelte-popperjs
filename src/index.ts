@@ -10,26 +10,27 @@ type ContentAction = (node: HTMLElement, popperOptions: PopperOptions) => {
   destroy(): void;
 };
 
-export function createPopperActions(): [ReferenceAction, ContentAction] {
-  let popperInstance: Instance | null;
+export function createPopperActions():
+    [ReferenceAction, ContentAction, () => Instance | null] {
+  let popperInstance: Instance | null = null;
   let referenceNode: HTMLElement;
   let contentNode: HTMLElement;
   let options: PopperOptions | undefined;
 
-  function initPopper() {
+  const initPopper = () => {
     if (referenceNode && contentNode) {
       popperInstance = createPopper(referenceNode, contentNode, options);
     }
-  }
+  };
 
-  function deinitPopper() {
+  const deinitPopper = () => {
     if (popperInstance) {
       popperInstance.destroy();
       popperInstance = null;
     }
-  }
+  };
 
-  function referenceAction(node: HTMLElement) {
+  const referenceAction: ReferenceAction = (node) => {
     referenceNode = node;
     initPopper();
     return {
@@ -37,9 +38,9 @@ export function createPopperActions(): [ReferenceAction, ContentAction] {
         deinitPopper();
       }
     };
-  }
+  };
 
-  function contentAction(node: HTMLElement, initOptions?: PopperOptions) {
+  const contentAction: ContentAction = (node, initOptions?) => {
     contentNode = node;
     options = initOptions;
     initPopper();
@@ -54,8 +55,8 @@ export function createPopperActions(): [ReferenceAction, ContentAction] {
         deinitPopper();
       }
     };
-  }
+  };
 
-  return [referenceAction, contentAction];
+  return [referenceAction, contentAction, () => popperInstance];
 }
 
