@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "prepare": "rollup -c && tsc",
-    "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "pretest": "eslint --ignore-path .gitignore .",
+    "test": "jest --collect-coverage"
   },
   "repository": {
     "type": "git",
