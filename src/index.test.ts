@@ -114,3 +114,23 @@ test('instance options should update when props update', () => {
   expect(getInstance()).not.toBeNull();
 });
 
+test('update instance options before init', () => {
+  // Arrange
+  const [refDiv, contentDiv] = getElements();
+  const [refAction, contentAction, getInstance] = createPopperActions();
+  const contentLifecycle = mountWithAction(contentDiv, contentAction, {
+    placement: 'right-start',
+  });
+
+  // Act
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  contentLifecycle.update!({
+    placement: 'left-start',
+  });
+
+  mountWithAction(refDiv, refAction);
+  // Assert
+  expect(getInstance()).not.toBeNull();
+});
+
+
