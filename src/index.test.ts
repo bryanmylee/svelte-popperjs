@@ -133,4 +133,3 @@ test('update instance options before init', () => {
   expect(getInstance()).not.toBeNull();
 });
 
-
