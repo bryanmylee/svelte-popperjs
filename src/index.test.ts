@@ -82,3 +82,54 @@ test('deinit unmount both', () => {
   expect(getInstance()).toBeNull();
 });
 
+test('init with popper options', () => {
+  // Arrange
+  const [refDiv, contentDiv] = getElements();
+  const [refAction, contentAction, getInstance] = createPopperActions();
+  mountWithAction(refDiv, refAction);
+
+  // Act
+  mountWithAction(contentDiv, contentAction, { placement: 'right-start' });
+
+  // Assert
+  expect(getInstance()).not.toBeNull();
+});
+
+test('instance options should update when props update', () => {
+  // Arrange
+  const [refDiv, contentDiv] = getElements();
+  const [refAction, contentAction, getInstance] = createPopperActions();
+  mountWithAction(refDiv, refAction);
+  const contentLifecycle = mountWithAction(contentDiv, contentAction, {
+    placement: 'right-start',
+  });
+
+  // Act
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  contentLifecycle.update!({
+    placement: 'left-start',
+  });
+
+  // Assert
+  expect(getInstance()).not.toBeNull();
+});
+
+test('update instance options before init', () => {
+  // Arrange
+  const [refDiv, contentDiv] = getElements();
+  const [refAction, contentAction, getInstance] = createPopperActions();
+  const contentLifecycle = mountWithAction(contentDiv, contentAction, {
+    placement: 'right-start',
+  });
+
+  // Act
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  contentLifecycle.update!({
+    placement: 'left-start',
+  });
+
+  mountWithAction(refDiv, refAction);
+  // Assert
+  expect(getInstance()).not.toBeNull();
+});
+

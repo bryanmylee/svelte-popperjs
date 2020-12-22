@@ -14,8 +14,14 @@ module.exports = {
   ],
   rules: {
     indent: [
-      'error',
-      2,
+      'error', 2,
+      {
+        MemberExpression: 2,
+        SwitchCase: 1,
+        FunctionDeclaration: {
+          parameters: 2,
+        },
+      },
     ],
     'linebreak-style': [
       'error',
@@ -44,3 +50,4 @@ module.exports = {
     ],
   },
 };
+

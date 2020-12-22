@@ -5,7 +5,8 @@
 [![npm downloads](https://img.shields.io/npm/dm/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 ![license](https://img.shields.io/npm/l/svelte-popperjs)
 ![build](https://img.shields.io/github/workflow/status/bryanmylee/svelte-popperjs/publish)
-![size](https://img.shields.io/bundlephobia/min/svelte-popperjs)
+[![coverage](https://coveralls.io/repos/github/bryanmylee/svelte-popperjs/badge.svg?branch=master)](https://coveralls.io/github/bryanmylee/svelte-popperjs?branch=master)
+[![size](https://img.shields.io/bundlephobia/min/svelte-popperjs)](https://bundlephobia.com/result?p=svelte-popperjs)
 
 Popper for Svelte with actions, no wrapper components or component bindings required!
 
@@ -71,7 +72,7 @@ Using the raw Popper instance to [manually recompute the popper's position](http
 <script>
   import { createPopperActions } from 'svelte-popperjs';
   const [popperRef, popperContent, getInstance] = createPopperActions();
-  
+
   async function refreshTooltip() {
     const newState = await getInstance().update();
   }
