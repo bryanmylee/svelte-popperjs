@@ -6,7 +6,7 @@ export type ReferenceAction = (node: HTMLElement) => { destroy(): void };
 
 export type ContentAction<TModifier> = (
   node: HTMLElement,
-  popperOptions: PopperOptions<TModifier>
+  popperOptions?: PopperOptions<TModifier>
 ) => {
   update(popperOptions: PopperOptions<TModifier>): void;
   destroy(): void;
