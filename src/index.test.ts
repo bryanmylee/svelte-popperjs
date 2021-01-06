@@ -34,7 +34,7 @@ test('init', () => {
   mountWithAction(refDiv, refAction);
 
   expect(getInstance()).toBeNull();
-  mountWithAction(contentDiv, contentAction, {});
+  mountWithAction(contentDiv, contentAction);
 
   expect(getInstance()).not.toBeNull();
 });
@@ -43,7 +43,7 @@ test('deinit unmount ref', () => {
   // Arrange
   const [refDiv, contentDiv] = getElements();
   const [refAction, contentAction, getInstance] = createPopperActions();
-  mountWithAction(contentDiv, contentAction, {});
+  mountWithAction(contentDiv, contentAction);
   const refLifecycle = mountWithAction(refDiv, refAction);
 
   // Act
@@ -58,7 +58,7 @@ test('deinit unmount content', () => {
   const [refDiv, contentDiv] = getElements();
   const [refAction, contentAction, getInstance] = createPopperActions();
   mountWithAction(refDiv, refAction);
-  const contentLifecycle = mountWithAction(contentDiv, contentAction, {});
+  const contentLifecycle = mountWithAction(contentDiv, contentAction);
 
   // Act
   unmount(contentDiv, contentLifecycle);
@@ -72,7 +72,7 @@ test('deinit unmount both', () => {
   const [refDiv, contentDiv] = getElements();
   const [refAction, contentAction, getInstance] = createPopperActions();
   const refLifecycle = mountWithAction(refDiv, refAction);
-  const contentLifecycle = mountWithAction(contentDiv, contentAction, {});
+  const contentLifecycle = mountWithAction(contentDiv, contentAction);
 
   // Act
   unmount(refDiv, refLifecycle);

@@ -1,21 +1,21 @@
 import { createPopper, Instance, OptionsGeneric, Modifier } from '@popperjs/core';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type PopperOptions = Partial<OptionsGeneric<Partial<Modifier<any, any>>>>;
-type ReferenceAction = (node: HTMLElement) => {
-  destroy(): void;
-};
-type ContentAction = (node: HTMLElement, popperOptions: PopperOptions) => {
-  update(popperOptions: PopperOptions): void;
+type PopperOptions<TModifier> = Partial<OptionsGeneric<TModifier>> | undefined;
+
+type ReferenceAction = (node: HTMLElement) => { destroy(): void };
+
+type ContentAction<TModifier> = (node: HTMLElement, popperOptions: PopperOptions<TModifier>) => {
+  update(popperOptions: PopperOptions<TModifier>): void;
   destroy(): void;
 };
 
-export function createPopperActions():
-    [ReferenceAction, ContentAction, () => Instance | null] {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function createPopperActions<TModifier extends Partial<Modifier<any, any>>>():
+    [ReferenceAction, ContentAction<TModifier>, () => Instance | null] {
   let popperInstance: Instance | null = null;
   let referenceNode: HTMLElement;
   let contentNode: HTMLElement;
-  let options: PopperOptions | undefined;
+  let options: PopperOptions<TModifier> | undefined;
 
   const initPopper = () => {
     if (referenceNode && contentNode) {
@@ -40,14 +40,14 @@ export function createPopperActions():
     };
   };
 
-  const contentAction: ContentAction = (node, initOptions?) => {
+  const contentAction: ContentAction<TModifier> = (node, initOptions?) => {
     contentNode = node;
     options = initOptions;
     initPopper();
     return {
-      update(newOptions: PopperOptions) {
+      update(newOptions: PopperOptions<TModifier>) {
         options = newOptions;
-        if (popperInstance) {
+        if (popperInstance && options) {
           popperInstance.setOptions(options);
         }
       },
