@@ -4,14 +4,18 @@ type PopperOptions<TModifier> = Partial<OptionsGeneric<TModifier>> | undefined;
 
 type ReferenceAction = (node: HTMLElement) => { destroy(): void };
 
-type ContentAction<TModifier> = (node: HTMLElement, popperOptions: PopperOptions<TModifier>) => {
+type ContentAction<TModifier> = (
+  node: HTMLElement,
+  popperOptions: PopperOptions<TModifier>
+) => {
   update(popperOptions: PopperOptions<TModifier>): void;
   destroy(): void;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createPopperActions<TModifier extends Partial<Modifier<any, any>>>():
-    [ReferenceAction, ContentAction<TModifier>, () => Instance | null] {
+export function createPopperActions<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TModifier extends Partial<Modifier<any, any>>
+>(): [ ReferenceAction, ContentAction<TModifier>, () => Instance | null ] {
   let popperInstance: Instance | null = null;
   let referenceNode: HTMLElement;
   let contentNode: HTMLElement;
