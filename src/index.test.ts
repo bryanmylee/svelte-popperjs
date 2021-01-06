@@ -82,6 +82,21 @@ test('deinit unmount both', () => {
   expect(getInstance()).toBeNull();
 });
 
+test('create with popper options', () => {
+  // Arrange
+  const [refDiv, contentDiv] = getElements();
+  const [refAction, contentAction, getInstance] = createPopperActions({
+    placement: 'right-start',
+  });
+  mountWithAction(refDiv, refAction);
+
+  // Act
+  mountWithAction(contentDiv, contentAction);
+
+  // Assert
+  expect(getInstance()).not.toBeNull();
+});
+
 test('init with popper options', () => {
   // Arrange
   const [refDiv, contentDiv] = getElements();
