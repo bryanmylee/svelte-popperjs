@@ -44,42 +44,6 @@ test('options should be set on create and merged from content action props', () 
   expect(getInstance()?.state.options).toEqual({ ...options, ...newOptionsPartial });
 });
 
-test('modifiers should be set on create and merged from content action props', () => {
-  // Arrange
-  const [refDiv, contentDiv] = getElements();
-  const options: OptionsGeneric<any> = {
-    modifiers: [
-      { name: 'offset', options: {
-        offset: [0, 20]
-      }},
-    ],
-    placement: 'right-start',
-    strategy: 'absolute',
-  };
-  const newOptionsPartial: Partial<OptionsGeneric<any>> = {
-    modifiers: [
-      { name: 'flip', options: {
-        fallbackPlacements: ['top', 'bottom'],
-      }},
-    ],
-    placement: 'left-start',
-  };
-
-  // Act
-  const [refAction, contentAction, getInstance] = createPopperActions(options);
-  mountWithAction(refDiv, refAction);
-  mountWithAction(contentDiv, contentAction, newOptionsPartial);
-
-  // Assert
-  expect(getInstance()).not.toBeNull();
-  expect(getInstance()?.state.options).toEqual({
-    ...options, ...newOptionsPartial,
-    modifiers: [
-      ...options.modifiers, ...newOptionsPartial.modifiers ?? [],
-    ],
-  });
-});
-
 test('options should be set on content action', () => {
   // Arrange
   const [refDiv, contentDiv] = getElements();

@@ -52,21 +52,11 @@ export function createPopperActions<
 
   const contentAction: ContentAction<TModifier> = (node, contentOptions?) => {
     contentNode = node;
-    options = {
-      ...initOptions, ...contentOptions,
-      modifiers: [
-        ...initOptions?.modifiers ?? [], ...contentOptions?.modifiers ?? [],
-      ],
-    };
+    options = { ...initOptions, ...contentOptions };
     initPopper();
     return {
       update(newContentOptions: PopperOptions<TModifier>) {
-        options = {
-          ...initOptions, ...newContentOptions,
-          modifiers: [
-            ...initOptions?.modifiers ?? [], ...newContentOptions?.modifiers ?? [],
-          ],
-        };
+        options = { ...initOptions, ...newContentOptions };
         if (popperInstance && options) {
           popperInstance.setOptions(options);
         }
