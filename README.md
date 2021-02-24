@@ -24,9 +24,9 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 ## Usage
 
-`createPopperActions` returns a pair of actions to be used on the [reference and popper elements](https://popper.js.org/docs/v2/constructors/#usage).
+`createPopperActions` takes an optional [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance, and returns a pair of actions to be used on the [reference and popper elements](https://popper.js.org/docs/v2/constructors/#usage).
 
-The content action takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for configuring the popper instance.
+The content action also takes an [options object](https://popper.js.org/docs/v2/constructors/#options) for updating the options of the popper instance.
 
 ### Example
 
@@ -62,6 +62,22 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 
 ## API
 
+### Setting popper options
+
+Popper options can be set statically when creating the popper actions, or dynamically on the content action.
+
+If both are set, then the dynamic options will be merged with the initial options.
+
+```svelte
+<script>
+  // set once and no longer updated
+  const [popperRef, popperContent] = createPopperActions(initOptions);
+</script>
+
+<!-- will be merged with initOptions -->
+<div use:popperContent={dynamicOptions}/>
+```
+
 ### Accessing the Popper instance
 
 If access is needed to the raw [Popper instance](https://popper.js.org/docs/v2/constructors/#instance) created by the actions, you can reference the third element returned by `createPopperActions`. The third element is a function that will return the current Popper instance used by the actions.
@@ -78,3 +94,4 @@ Using the raw Popper instance to [manually recompute the popper's position](http
   }
 </script>
 ```
+
