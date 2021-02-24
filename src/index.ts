@@ -50,13 +50,13 @@ export function createPopperActions<
     };
   };
 
-  const contentAction: ContentAction<TModifier> = (node, initOptions?) => {
+  const contentAction: ContentAction<TModifier> = (node, contentOptions?) => {
     contentNode = node;
-    options = initOptions;
+    options = { ...initOptions, ...contentOptions };
     initPopper();
     return {
-      update(newOptions: PopperOptions<TModifier>) {
-        options = newOptions;
+      update(newContentOptions: PopperOptions<TModifier>) {
+        options = { ...initOptions, ...newContentOptions };
         if (popperInstance && options) {
           popperInstance.setOptions(options);
         }
