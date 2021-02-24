@@ -1,6 +1,6 @@
 module.exports = {
   roots: [
-    './src',
+    '.',
   ],
   testMatch: [
     '**/__tests__/**/*.+(ts|js)',
@@ -9,5 +9,9 @@ module.exports = {
   transform: {
     '^.+\\.(ts)$': 'ts-jest',
   },
+  coveragePathIgnorePatterns: [
+    './node_modules/',
+    './tests/helpers.ts',
+  ],
 };
 

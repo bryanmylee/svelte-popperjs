@@ -50,13 +50,23 @@ export function createPopperActions<
     };
   };
 
-  const contentAction: ContentAction<TModifier> = (node, initOptions?) => {
+  const contentAction: ContentAction<TModifier> = (node, contentOptions?) => {
     contentNode = node;
-    options = initOptions;
+    options = {
+      ...initOptions, ...contentOptions,
+      modifiers: [
+        ...initOptions?.modifiers ?? [], ...contentOptions?.modifiers ?? [],
+      ],
+    };
     initPopper();
     return {
-      update(newOptions: PopperOptions<TModifier>) {
-        options = newOptions;
+      update(newContentOptions: PopperOptions<TModifier>) {
+        options = {
+          ...initOptions, ...newContentOptions,
+          modifiers: [
+            ...initOptions?.modifiers ?? [], ...newContentOptions?.modifiers ?? [],
+          ],
+        };
         if (popperInstance && options) {
           popperInstance.setOptions(options);
         }
