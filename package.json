@@ -1,6 +1,6 @@
 {
   "name": "svelte-popperjs",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Popper for Svelte with actions, no wrapper components required!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -31,10 +31,11 @@
     "url": "https://github.com/bryanmylee/svelte-popperjs/issues"
   },
   "homepage": "https://github.com/bryanmylee/svelte-popperjs#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@popperjs/core": "^2.4.4"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.4.4",
     "@rollup/plugin-typescript": "^5.0.2",
     "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
