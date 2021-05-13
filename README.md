@@ -34,7 +34,8 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 
 ```svelte
 <script>
-  import { createPopperActions } from 'svelte-popperjs';
+  import * as pkg from 'svelte-popperjs';
+  const { createPopperActions } = pkg;
   const [popperRef, popperContent] = createPopperActions();
   const popperOptions = {
     modifiers: [
@@ -59,6 +60,8 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
   </div>
 {/if}
 ```
+
+Note: `import * as pkg from 'svelte-popperjs';` is used rather than `import { createPopperActions } from 'svelte-popperjs';` to avoid svelte-kit packaging problems. More details in the [FAQ](https://kit.svelte.dev/faq#packages)
 
 ## API
 
