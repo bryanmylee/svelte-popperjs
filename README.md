@@ -1,6 +1,7 @@
 ![svelte-popperjs-banner](https://user-images.githubusercontent.com/42545742/102723166-49801c80-4341-11eb-8067-ebc66fdd47f4.png)
 
 # svelte-popperjs
+
 [![npm version](http://img.shields.io/npm/v/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 [![npm downloads](https://img.shields.io/npm/dm/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 ![license](https://img.shields.io/npm/l/svelte-popperjs)
@@ -94,4 +95,3 @@ Using the raw Popper instance to [manually recompute the popper's position](http
   }
 </script>
 ```
-
