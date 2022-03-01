@@ -36,8 +36,11 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
 ```svelte
 <script>
   import { createPopperActions } from 'svelte-popperjs';
-  const [popperRef, popperContent] = createPopperActions();
-  const popperOptions = {
+  const [popperRef, popperContent] = createPopperActions({
+    placement: 'right',
+    strategy: 'fixed',
+  });
+  const extraOpts = {
     modifiers: [
       { name: 'offset', options: { offset: [0, 8] } }
     ],
@@ -54,7 +57,7 @@ A Svelte version of the standard [tutorial](https://popper.js.org/docs/v2/tutori
   My button
 </button>
 {#if showTooltip}
-  <div id="tooltip" use:popperContent={popperOptions}>
+  <div id="tooltip" use:popperContent={extraOpts}>
     My tooltip
     <div id="arrow" data-popper-arrow />
   </div>
