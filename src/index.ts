@@ -9,7 +9,7 @@ export type PopperOptions<TModifier> =
 	| Partial<OptionsGeneric<TModifier>>
 	| undefined;
 
-export type ReferenceAction = (node: HTMLElement) => { destroy(): void };
+export type ReferenceAction = (node: Element) => { destroy(): void };
 
 export type ContentAction<TModifier> = (
 	node: HTMLElement,
@@ -26,7 +26,7 @@ export function createPopperActions<
 	initOptions?: PopperOptions<TModifier>
 ): [ReferenceAction, ContentAction<TModifier>, () => Instance | null] {
 	let popperInstance: Instance | null = null;
-	let referenceNode: HTMLElement;
+	let referenceNode: Element;
 	let contentNode: HTMLElement;
 	let options: PopperOptions<TModifier> | undefined = initOptions;
 
