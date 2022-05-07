@@ -27,7 +27,7 @@
 		"positioning"
 	],
 	"author": "Bryan Lee",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/bryanmylee/svelte-popperjs/issues"
 	},
