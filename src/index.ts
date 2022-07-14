@@ -4,12 +4,15 @@ import {
 	OptionsGeneric,
 	Modifier,
 } from '@popperjs/core';
+import type { VirtualElement } from '@popperjs/core';
 
 export type PopperOptions<TModifier> =
 	| Partial<OptionsGeneric<TModifier>>
 	| undefined;
 
-export type ReferenceAction = (node: Element) => { destroy(): void };
+export type ReferenceAction = (node: VirtualElement | Element) => {
+	destroy(): void;
+};
 
 export type ContentAction<TModifier> = (
 	node: HTMLElement,
@@ -26,7 +29,7 @@ export function createPopperActions<
 	initOptions?: PopperOptions<TModifier>
 ): [ReferenceAction, ContentAction<TModifier>, () => Instance | null] {
 	let popperInstance: Instance | null = null;
-	let referenceNode: Element;
+	let referenceNode: VirtualElement | Element;
 	let contentNode: HTMLElement;
 	let options: PopperOptions<TModifier> | undefined = initOptions;
 
