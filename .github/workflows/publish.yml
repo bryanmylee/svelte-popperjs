@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: npm i -D svelte @popperjs/core
       - run: npm ci
       - run: npm test
 
