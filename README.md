@@ -82,6 +82,45 @@ If both are set, then the dynamic options will be merged with the initial option
 <div use:popperContent={dynamicOptions}/>
 ```
 
+### Virtual elements
+
+PopperJS allows the reference node to be a [virtual element](https://popper.js.org/docs/v2/virtual-elements/) which is not mounted on the DOM and cannot be used with Svelte actions.
+
+Despite this, `svelte-popperjs` provides first-class support for virtual elements, and even supports reactive updates to the virtual element with Svelte [stores](https://svelte.dev/tutorial/writable-stores).
+
+Here's an example creating a tooltip that follows the mouse cursor.
+
+```svelte
+<script>
+  import { writable } from 'svelte/store';
+  import { createPopperActions } from 'svelte-popperjs';
+  const [popperRef, popperContent] = createPopperActions({
+    strategy: 'fixed',
+  });
+  
+  let x = 0;
+  let y = 0;
+  const mousemove = (ev: MouseEvent) => {
+    x = ev.clientX;
+    y = ev.clientY;
+  }
+  
+  $: getBoundingClientRect = () => ({
+    width: 0, height: 0,
+    top: y, bottom: y,
+    left: x, right: x,
+  });
+  const virtualElement = writable({ getBoundingClientRect });
+  $: $virtualElement = { getBoundingClientRect };
+  ref(virtualElement);
+</script>
+<svelte:window on:mousemove={mousemove} />
+
+<main>
+  <div use:content>Tooltip</div>
+</main>
+```
+
 ### Accessing the Popper instance
 
 If access is needed to the raw [Popper instance](https://popper.js.org/docs/v2/constructors/#instance) created by the actions, you can reference the third element returned by `createPopperActions`. The third element is a function that will return the current Popper instance used by the actions.
