@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"moduleResolution": "node",
+		"target": "ESNext",
+		"moduleResolution": "Node",
 		"emitDeclarationOnly": true,
 		"declaration": true,
 		"declarationDir": "dist",
