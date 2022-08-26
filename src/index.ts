@@ -3,8 +3,9 @@ import {
 	Instance,
 	OptionsGeneric,
 	Modifier,
+	type VirtualElement,
 } from '@popperjs/core';
-import type { VirtualElement } from '@popperjs/core';
+export type { VirtualElement } from '@popperjs/core';
 
 export type PopperOptions<TModifier> =
 	| Partial<OptionsGeneric<TModifier>>
