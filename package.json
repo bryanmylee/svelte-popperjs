@@ -11,7 +11,9 @@
 	"scripts": {
 		"prepare": "rollup -c && tsc",
 		"pretest": "eslint --ignore-path .gitignore .",
-		"test": "jest --collect-coverage",
+		"test": "vitest run --coverage",
+		"test:only": "vitest run",
+		"test:watch": "vitest",
 		"format": "prettier --plugin-search-dir=. --write --ignore-path .gitignore ."
 	},
 	"repository": {
@@ -33,23 +35,25 @@
 	},
 	"homepage": "https://github.com/bryanmylee/svelte-popperjs#readme",
 	"peerDependencies": {
-		"@popperjs/core": "2.x"
+		"@popperjs/core": ">=2",
+		"svelte": ">=3"
 	},
 	"devDependencies": {
-		"@popperjs/core": "^2.11.6",
 		"@rollup/plugin-typescript": "^5.0.2",
-		"@types/jest": "^26.0.19",
+		"@sveltejs/vite-plugin-svelte": "^1.0.2",
+		"@testing-library/jest-dom": "^5.16.5",
 		"@typescript-eslint/eslint-plugin": "^4.11.0",
 		"@typescript-eslint/parser": "^4.11.0",
+		"@vitest/coverage-c8": "^0.22.1",
 		"eslint": "^7.5.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-import": "^2.22.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"jest": "^26.6.3",
+		"jsdom": "^20.0.0",
 		"prettier": "^2.5.1",
 		"rollup": "^2.23.0",
-		"ts-jest": "^26.4.4",
 		"tslib": "^2.0.0",
-		"typescript": "^4.8.2"
+		"typescript": "^4.8.2",
+		"vitest": "^0.22.1"
 	}
 }

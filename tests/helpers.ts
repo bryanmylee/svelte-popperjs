@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Action = (
 	node: HTMLElement,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	params?: any
 ) => ActionLifecycleHandlers;
 export type ActionLifecycleHandlers = {
