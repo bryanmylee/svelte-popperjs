@@ -1,8 +1,7 @@
-<script lang="ts">
-	import type { Readable } from 'svelte/store';
-	import { createPopperActions, type VirtualElement } from '../src';
+<script>
+	import { createPopperActions } from '../src';
 
-	export let virtualElement: VirtualElement | Readable<VirtualElement>;
+	export let virtualElement;
 	const [ref, content] = createPopperActions();
 	ref(virtualElement);
 </script>
