@@ -35,10 +35,10 @@
 	},
 	"homepage": "https://github.com/bryanmylee/svelte-popperjs#readme",
 	"peerDependencies": {
-		"@popperjs/core": "2.x"
+		"@popperjs/core": ">=2",
+		"svelte": ">=3"
 	},
 	"devDependencies": {
-		"@popperjs/core": "^2.11.6",
 		"@rollup/plugin-typescript": "^5.0.2",
 		"@sveltejs/vite-plugin-svelte": "^1.0.2",
 		"@testing-library/jest-dom": "^5.16.5",
