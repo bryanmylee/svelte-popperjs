@@ -1,3 +1,4 @@
+import type { Readable } from 'svelte/store';
 import {
 	createPopper,
 	Instance,
@@ -5,14 +6,17 @@ import {
 	Modifier,
 	type VirtualElement,
 } from '@popperjs/core';
+import { onDestroy } from 'svelte';
 export type { VirtualElement } from '@popperjs/core';
 
 export type PopperOptions<TModifier> =
 	| Partial<OptionsGeneric<TModifier>>
 	| undefined;
 
-export type ReferenceAction = (node: VirtualElement | Element) => {
-	destroy(): void;
+export type ReferenceAction = (
+	node: Element | VirtualElement | Readable<VirtualElement>
+) => {
+	destroy?(): void;
 };
 
 export type ContentAction<TModifier> = (
@@ -30,12 +34,12 @@ export function createPopperActions<
 	initOptions?: PopperOptions<TModifier>
 ): [ReferenceAction, ContentAction<TModifier>, () => Instance | null] {
 	let popperInstance: Instance | null = null;
-	let referenceNode: VirtualElement | Element;
-	let contentNode: HTMLElement;
+	let referenceNode: VirtualElement | Element | undefined;
+	let contentNode: HTMLElement | undefined;
 	let options: PopperOptions<TModifier> | undefined = initOptions;
 
 	const initPopper = () => {
-		if (referenceNode && contentNode) {
+		if (referenceNode !== undefined && contentNode !== undefined) {
 			popperInstance = createPopper(referenceNode, contentNode, options);
 		}
 	};
@@ -48,13 +52,32 @@ export function createPopperActions<
 	};
 
 	const referenceAction: ReferenceAction = (node) => {
-		referenceNode = node;
-		initPopper();
-		return {
-			destroy() {
-				deinitPopper();
-			},
-		};
+		if ('subscribe' in node) {
+			setupVirtualElementObserver(node);
+			return {};
+		} else {
+			referenceNode = node;
+			initPopper();
+			return {
+				destroy() {
+					deinitPopper();
+				},
+			};
+		}
+	};
+
+	const setupVirtualElementObserver = (node: Readable<VirtualElement>) => {
+		const unsubscribe = node.subscribe(($node) => {
+			if (referenceNode === undefined) {
+				referenceNode = $node;
+				initPopper();
+			} else {
+				// Preserve the reference to the virtual element.
+				Object.assign(referenceNode, $node);
+				popperInstance?.update();
+			}
+		});
+		onDestroy(unsubscribe);
 	};
 
 	const contentAction: ContentAction<TModifier> = (node, contentOptions?) => {
