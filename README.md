@@ -112,12 +112,12 @@ Here's an example creating a tooltip that follows the mouse cursor.
   });
   const virtualElement = writable({ getBoundingClientRect });
   $: $virtualElement = { getBoundingClientRect };
-  ref(virtualElement);
+  popperRef(virtualElement);
 </script>
 <svelte:window on:mousemove={mousemove} />
 
 <main>
-  <div use:content>Tooltip</div>
+  <div use:popperContent>Tooltip</div>
 </main>
 ```
 
