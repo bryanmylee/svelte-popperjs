@@ -45,7 +45,7 @@ export function createPopperActions<
 	};
 
 	const deinitPopper = () => {
-		if (popperInstance) {
+		if (popperInstance !== null) {
 			popperInstance.destroy();
 			popperInstance = null;
 		}
@@ -87,9 +87,7 @@ export function createPopperActions<
 		return {
 			update(newContentOptions: PopperOptions<TModifier>) {
 				options = { ...initOptions, ...newContentOptions };
-				if (popperInstance && options) {
-					popperInstance.setOptions(options);
-				}
+				popperInstance?.setOptions(options);
 			},
 			destroy() {
 				deinitPopper();
