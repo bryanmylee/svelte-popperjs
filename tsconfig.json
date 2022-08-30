@@ -4,10 +4,16 @@
 		"moduleResolution": "Node",
 		"emitDeclarationOnly": true,
 		"declaration": true,
-		"declarationDir": "dist",
+		"outDir": "dist",
 		"strict": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true
 	},
-	"exclude": ["node_modules", "dist", "tests"]
+	"exclude": [
+		"node_modules",
+		"dist",
+		"tests",
+		"vitest.config.ts",
+		"vitest.setup.ts"
+	]
 }

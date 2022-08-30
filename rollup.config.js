@@ -3,7 +3,7 @@ import pkg from './package.json';
 import tsconfig from './tsconfig.json';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { declaration, declarationDir, ...compilerOptions } =
+const { declaration, declarationDir, outDir, ...compilerOptions } =
 	tsconfig.compilerOptions;
 
 export default {
@@ -12,7 +12,7 @@ export default {
 		{ format: 'cjs', file: pkg.main },
 		{ format: 'es', file: pkg.module },
 	],
-	external: '@popperjs/core',
+	external: ['@popperjs/core', 'svelte'],
 	plugins: [
 		typescript({
 			tsconfig: false,
