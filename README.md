@@ -5,7 +5,7 @@
 [![npm version](http://img.shields.io/npm/v/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 [![npm downloads](https://img.shields.io/npm/dm/svelte-popperjs.svg)](https://www.npmjs.com/package/svelte-popperjs)
 ![license](https://img.shields.io/npm/l/svelte-popperjs)
-![build](https://img.shields.io/github/workflow/status/bryanmylee/svelte-popperjs/publish)
+![build](https://img.shields.io/github/actions/workflow/status/bryanmylee/svelte-popperjs/publish.yml)
 [![coverage](https://coveralls.io/repos/github/bryanmylee/svelte-popperjs/badge.svg?branch=master)](https://coveralls.io/github/bryanmylee/svelte-popperjs?branch=master)
 [![size](https://img.shields.io/bundlephobia/min/svelte-popperjs)](https://bundlephobia.com/result?p=svelte-popperjs)
 
@@ -22,6 +22,8 @@ $ npm i -D svelte-popperjs
 ```
 
 Since Svelte automatically bundles all required dependencies, you only need to install this package as a dev dependency with the `-D` flag.
+
+Due to a configuration [issue with PopperJS](https://github.com/bryanmylee/svelte-popperjs/issues/25), this will not work in the Svelte REPL. However, `svelte-popperjs` works with Rollup, Vite, and SvelteKit!
 
 ## Usage
 
